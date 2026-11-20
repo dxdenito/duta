@@ -35,3 +35,49 @@ export function randomArticle() {
 export function suggestWiki(query, signal) {
   return request(`/api/wiki/suggest?q=${encodeURIComponent(query)}`, { signal })
 }
+
+export function newHangman(category = '') {
+  return request(`/api/games/hangman?category=${encodeURIComponent(category)}`, {
+    method: 'POST',
+  })
+}
+
+export function guessHangman(id, letter) {
+  return request(`/api/games/hangman/${encodeURIComponent(id)}/guess`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ letter }),
+  })
+}
+
+function post(url, body) {
+  return request(url, {
+    method: 'POST',
+    headers: body ? { 'Content-Type': 'application/json' } : undefined,
+    body: body ? JSON.stringify(body) : undefined,
+  })
+}
+
+export function newScramble(category = '') {
+  return post(`/api/games/scramble?category=${encodeURIComponent(category)}`)
+}
+
+export function answerScramble(id, answer) {
+  return post(`/api/games/scramble/${encodeURIComponent(id)}/answer`, { answer })
+}
+
+export function hintScramble(id) {
+  return post(`/api/games/scramble/${encodeURIComponent(id)}/hint`)
+}
+
+export function giveUpScramble(id) {
+  return post(`/api/games/scramble/${encodeURIComponent(id)}/giveup`)
+}
+
+export function newTrivia(category = '') {
+  return post(`/api/games/trivia?category=${encodeURIComponent(category)}`)
+}
+
+export function answerTrivia(id, choice) {
+  return post(`/api/games/trivia/${encodeURIComponent(id)}/answer`, { choice })
+}

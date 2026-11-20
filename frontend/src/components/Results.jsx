@@ -1,6 +1,10 @@
 import { CircleAlert, X } from 'lucide-react'
 import NewsView from './NewsView.jsx'
 import WikiView from './WikiView.jsx'
+import { Link } from 'react-router-dom'
+import HangmanGame from './HangmanGame.jsx'
+import ScrambleGame from './ScrambleGame.jsx'
+import TriviaGame from './TriviaGame.jsx'
 
 function HelpResult({ data }) {
   return (
@@ -41,12 +45,49 @@ function WikiResult({ data }) {
   return <WikiView initial={data} />
 }
 
+function GamesResult({ data }) {
+  return (
+    <ul className="grid gap-2 sm:grid-cols-2">
+      {data.map((game) => (
+        <li key={game.id}>
+          {game.available ? (
+            <Link
+              to={`/games/${game.id}`}
+              className="flex h-full flex-col rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200/70 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800/60 dark:ring-slate-700"
+            >
+              <span className="font-semibold">{game.name}</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">{game.description}</span>
+            </Link>
+          ) : (
+            <div className="flex h-full flex-col rounded-2xl bg-slate-50/60 p-4 opacity-60 ring-1 ring-slate-200/70 dark:bg-slate-800/40 dark:ring-slate-700">
+              <span className="font-semibold">
+                {game.name}
+                <span className="ml-2 text-xs font-medium text-slate-500">Soon</span>
+              </span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">{game.description}</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function GameResult({ data }) {
+  if (data.game === 'hangman') return <HangmanGame initial={data.state} />
+  if (data.game === 'scramble') return <ScrambleGame initial={data.state} />
+  if (data.game === 'trivia') return <TriviaGame initial={data.state} />
+  return <TextResult data={{ message: 'That game is not available yet.' }} />
+}
+
 const RENDERERS = {
   help: HelpResult,
   text: TextResult,
   error: ErrorResult,
   news: NewsResult,
   wiki: WikiResult,
+  games: GamesResult,
+  game: GameResult,
 }
 
 export default function Results({ result, onClose }) {
