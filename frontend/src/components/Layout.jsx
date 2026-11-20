@@ -11,6 +11,7 @@ import {
   Sun,
   X,
   Zap,
+  Radio,
 } from 'lucide-react'
 import Logo from './Logo.jsx'
 import { useTheme } from '../hooks/useTheme.js'
@@ -19,6 +20,7 @@ import { USER_NAME } from '../config.js'
 const NAV = [
   { to: '/', label: 'Home', icon: House },
   { to: '/news', label: 'News', icon: Newspaper },
+  { to: '/live', label: 'Live', icon: Radio },
   { to: '/wiki', label: 'Wikipedia', icon: BookOpen },
   { to: '/games', label: 'Games', icon: Gamepad2 },
   { to: '/more', label: 'More', icon: LayoutGrid },

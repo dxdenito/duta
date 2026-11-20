@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import HangmanGame from './HangmanGame.jsx'
 import ScrambleGame from './ScrambleGame.jsx'
 import TriviaGame from './TriviaGame.jsx'
+import ScoresView from './ScoresView.jsx'
 
 function HelpResult({ data }) {
   return (
@@ -78,6 +79,18 @@ function GameResult({ data }) {
   if (data.game === 'scramble') return <ScrambleGame initial={data.state} />
   if (data.game === 'trivia') return <TriviaGame initial={data.state} />
   return <TextResult data={{ message: 'That game is not available yet.' }} />
+}
+
+function ScoresResult({ data }) {
+  return (
+    <div className="text-left">
+      {data.title && <h2 className="mb-3 text-lg font-bold">{data.title}</h2>}
+      <ScoresView
+        matches={data.matches}
+        emptyText={data.league ? 'No recent or upcoming matches.' : 'No live matches right now.'}
+      />
+    </div>
+  )
 }
 
 const RENDERERS = {

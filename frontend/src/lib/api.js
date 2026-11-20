@@ -81,3 +81,18 @@ export function newTrivia(category = '') {
 export function answerTrivia(id, choice) {
   return post(`/api/games/trivia/${encodeURIComponent(id)}/answer`, { choice })
 }
+
+export function fetchLeagues() {
+  return request('/api/sports/leagues')
+}
+
+export function fetchScores(league, signal) {
+  return request(`/api/sports/scores?league=${encodeURIComponent(league)}`, { signal })
+}
+
+export function fetchMatch(league, id, signal) {
+  return request(
+    `/api/sports/match/${encodeURIComponent(league)}/${encodeURIComponent(id)}`,
+    { signal },
+  )
+}

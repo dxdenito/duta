@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LoaderCircle, Search, Send } from 'lucide-react'
 
-const SUGGESTIONS = ['/news', '/nse', '/wiki Kenya', '/play', '/help']
+const SUGGESTIONS = ['/news', '/nse', '/live', '/scores', '/wiki Kenya', '/play', '/help']
 
 export default function CommandBar({ onSubmit, loading }) {
   const [value, setValue] = useState('')

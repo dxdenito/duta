@@ -9,6 +9,7 @@ from app.news.router import router as news_router
 from app.schemas import CommandRequest, CommandResponse
 from app.wiki.router import router as wiki_router
 from app.games.router import router as games_router
+from app.sports.router import router as sports_router
 
 PRIVATE_ORIGIN_REGEX = (
     r"^https?://("
@@ -39,6 +40,7 @@ app.add_middleware(
 app.include_router(news_router)
 app.include_router(wiki_router)
 app.include_router(games_router)
+app.include_router(sports_router)
 
 @app.get("/api/health")
 def health():

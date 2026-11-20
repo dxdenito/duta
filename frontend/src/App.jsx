@@ -10,6 +10,8 @@ import Wiki from './pages/Wiki.jsx'
 import Games from './pages/Games.jsx'
 import Hangman from './pages/Hangman.jsx'
 import ComingSoon from './pages/ComingSoon.jsx'
+import Live from './pages/Live.jsx'
+import Match from './pages/Match.jsx'
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="news" element={<News />} />
+        <Route path="live" element={<Live />} />
+        <Route path="live/:league/:eventId" element={<Match />} />
         <Route path="wiki" element={<Wiki />} />
         <Route path="games" element={<Games />} />
         <Route path="games/hangman" element={<Hangman />} />
