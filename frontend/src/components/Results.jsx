@@ -7,6 +7,7 @@ import ScrambleGame from './ScrambleGame.jsx'
 import TriviaGame from './TriviaGame.jsx'
 import ScoresView from './ScoresView.jsx'
 import { ConvertView, DefineView, JokeView, WeatherView } from './ToolViews.jsx'
+import StocksView from './StocksView.jsx'
 
 function HelpResult({ data }) {
   return (
@@ -99,6 +100,7 @@ const RENDERERS = {
   text: TextResult,
   error: ErrorResult,
   news: NewsResult,
+  stocks: StocksView,
   wiki: WikiResult,
   games: GamesResult,
   game: GameResult,

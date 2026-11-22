@@ -3,6 +3,7 @@ from app.commands import (
     news_command,
     play_command,
     sports_command,
+    stocks_command,
     tools_command,
     wiki_command,
 )
@@ -13,6 +14,7 @@ __all__ = [
     "news_command",
     "play_command",
     "sports_command",
+    "stocks_command",
     "tools_command",
     "wiki_command",
     "registry",

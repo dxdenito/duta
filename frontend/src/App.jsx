@@ -13,6 +13,7 @@ import ComingSoon from './pages/ComingSoon.jsx'
 import Live from './pages/Live.jsx'
 import Match from './pages/Match.jsx'
 import Tools from './pages/Tools.jsx'
+import Stocks from './pages/Stocks.jsx'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="news" element={<News />} />
         <Route path="live" element={<Live />} />
         <Route path="live/:league/:eventId" element={<Match />} />
+        <Route path="stocks" element={<Stocks />} />
         <Route path="wiki" element={<Wiki />} />
         <Route path="games" element={<Games />} />
         <Route path="games/hangman" element={<Hangman />} />
