@@ -6,6 +6,7 @@ import HangmanGame from './HangmanGame.jsx'
 import ScrambleGame from './ScrambleGame.jsx'
 import TriviaGame from './TriviaGame.jsx'
 import ScoresView from './ScoresView.jsx'
+import { ConvertView, DefineView, JokeView, WeatherView } from './ToolViews.jsx'
 
 function HelpResult({ data }) {
   return (
@@ -101,6 +102,11 @@ const RENDERERS = {
   wiki: WikiResult,
   games: GamesResult,
   game: GameResult,
+  scores: ScoresResult,
+  define: DefineView,
+  weather: WeatherView,
+  convert: ConvertView,
+  joke: JokeView,
 }
 
 export default function Results({ result, onClose }) {

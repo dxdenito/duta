@@ -12,6 +12,7 @@ import Hangman from './pages/Hangman.jsx'
 import ComingSoon from './pages/ComingSoon.jsx'
 import Live from './pages/Live.jsx'
 import Match from './pages/Match.jsx'
+import Tools from './pages/Tools.jsx'
 
 export default function App() {
   return (
@@ -40,7 +41,7 @@ export default function App() {
             </GamePage>
           }
         />
-        <Route path="more" element={<ComingSoon title="More Tools" icon={LayoutGrid} />} />
+        <Route path="more" element={<Tools />} />
         <Route path="*" element={<ComingSoon title="Page not found" icon={LayoutGrid} />} />
       </Route>
     </Routes>

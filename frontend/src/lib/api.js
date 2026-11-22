@@ -96,3 +96,23 @@ export function fetchMatch(league, id, signal) {
     { signal },
   )
 }
+
+export function fetchDefine(word) {
+  return request(`/api/tools/define?word=${encodeURIComponent(word)}`)
+}
+
+export function fetchWeather(place) {
+  return request(`/api/tools/weather?place=${encodeURIComponent(place)}`)
+}
+
+export function fetchConvert(query) {
+  return request(`/api/tools/convert?q=${encodeURIComponent(query)}`)
+}
+
+export function fetchJoke(exclude = -1) {
+  return request(`/api/tools/joke?exclude=${exclude}`)
+}
+
+export function fetchCommands() {
+  return request('/api/commands')
+}

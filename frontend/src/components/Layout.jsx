@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 import Logo from './Logo.jsx'
 import { useTheme } from '../hooks/useTheme.js'
-import { USER_NAME } from '../config.js'
+
 
 const NAV = [
   { to: '/', label: 'Home', icon: House },
@@ -86,26 +86,13 @@ function Topbar({ dark, onToggle, onMenu }) {
         <span className="text-lg font-bold">Duta</span>
       </div>
 
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onToggle}
-          aria-label="Toggle theme"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow dark:bg-slate-800 dark:ring-slate-700"
-        >
-          {dark ? (
-            <Sun className="h-5 w-5 text-amber-400" />
-          ) : (
-            <Moon className="h-5 w-5 text-slate-600" />
-          )}
-        </button>
-
-        <div className="hidden items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-4 shadow-sm ring-1 ring-slate-200 sm:flex dark:bg-slate-800 dark:ring-slate-700">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-700 text-sm font-semibold text-white">
-            {USER_NAME[0]}
-          </span>
-          <span className="text-sm font-medium">{USER_NAME}</span>
-        </div>
-      </div>
+      <button
+        onClick={onToggle}
+        aria-label="Toggle theme"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow dark:bg-slate-800 dark:ring-slate-700"
+      >
+        {dark ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5 text-slate-600" />}
+      </button>
     </header>
   )
 }

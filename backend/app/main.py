@@ -10,6 +10,7 @@ from app.schemas import CommandRequest, CommandResponse
 from app.wiki.router import router as wiki_router
 from app.games.router import router as games_router
 from app.sports.router import router as sports_router
+from app.tools.router import router as tools_router
 
 PRIVATE_ORIGIN_REGEX = (
     r"^https?://("
@@ -41,11 +42,23 @@ app.include_router(news_router)
 app.include_router(wiki_router)
 app.include_router(games_router)
 app.include_router(sports_router)
+app.include_router(tools_router)
 
 @app.get("/api/health")
 def health():
     return {"status": "online", "message": "Duta is ready to help!"}
 
+@app.get("/api/commands")
+async def list_commands():
+    return [
+        {
+            "name": command.name,
+            "description": command.description,
+            "usage": command.usage,
+            "aliases": list(command.aliases),
+        }
+        for command in registry.commands
+    ]
 
 @app.post("/api/command", response_model=CommandResponse)
 async def run_command(payload: CommandRequest):
