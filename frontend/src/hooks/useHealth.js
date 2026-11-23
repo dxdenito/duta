@@ -5,13 +5,22 @@ export function useHealth() {
 
   useEffect(() => {
     const controller = new AbortController()
-    fetch(`${import.meta.env.VITE_API_URL}/api/health`, {
-  signal: controller.signal,
-})
-      .then((response) => setOnline(response.ok))
-      .catch((error) => {
-        if (error.name !== 'AbortError') setOnline(false)
+    const url = `${import.meta.env.VITE_API_URL}/api/health`
+
+    console.log('Health check URL:', url)
+
+    fetch(url, { signal: controller.signal })
+      .then(async (response) => {
+        console.log('Health response:', response.status, response.url)
+        setOnline(response.ok)
       })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          console.error('Health check failed:', error)
+          setOnline(false)
+        }
+      })
+
     return () => controller.abort()
   }, [])
 
