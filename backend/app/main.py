@@ -35,8 +35,7 @@ ALLOWED_ORIGINS = [
     origin.strip()
     for origin in os.getenv(
         "ALLOWED_ORIGINS",
-        "http://localhost:5173",
-        "https://duta-frontend.onrender.com"
+        "http://localhost:5173"
     ).split(",")
     if origin.strip()
 ]
