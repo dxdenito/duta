@@ -5,7 +5,9 @@ export function useHealth() {
 
   useEffect(() => {
     const controller = new AbortController()
-    fetch('/api/health', { signal: controller.signal })
+    fetch(`${import.meta.env.VITE_API_URL}/api/health`, {
+  signal: controller.signal,
+})
       .then((response) => setOnline(response.ok))
       .catch((error) => {
         if (error.name !== 'AbortError') setOnline(false)
