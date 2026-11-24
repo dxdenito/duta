@@ -1,8 +1,12 @@
 import os
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
+
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.commands import registry
 from app.http import close_client
@@ -73,3 +77,17 @@ async def list_commands():
 @app.post("/api/command", response_model=CommandResponse)
 async def run_command(payload: CommandRequest):
     return await registry.execute(payload.input)
+
+DIST = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
+
+if (DIST / "index.html").is_file():
+    app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")
+
+    @app.get("/{path:path}", include_in_schema=False)
+    async def spa(path: str):
+        if path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="Not found")
+        candidate = (DIST / path).resolve()
+        if path and candidate.is_file() and DIST.resolve() in candidate.parents:
+            return FileResponse(candidate)
+        return FileResponse(DIST / "index.html")

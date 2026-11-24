@@ -71,9 +71,3 @@ async def stream(
     )
 
 
-@router.get("/debug/{league}/{event_id}")
-async def debug(
-    league: str = Path(..., max_length=30),
-    event_id: str = Path(..., pattern=EVENT_PATTERN),
-):
-    return await respond(service.debug_match(league, event_id))

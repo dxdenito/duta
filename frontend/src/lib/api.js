@@ -1,6 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || ''
 async function request(url, options) {
-  const response = await fetch(`${API_URL}${url}`, options)
+  const response = await fetch(url, options)
 
   if (!response.ok) {
     const body = await response.json().catch(() => null)
